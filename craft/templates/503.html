@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta http-equiv="cleartype" content="on">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<meta property="og:image" content=""/>
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+
+	<title>{% if title is defined %}{{ title }} - {% endif %}{{ siteName }}</title>
+	<link rel="home" href="{{ siteUrl }}" />
+
+	<meta name="description" content="Based on the idea that stunning visual design combined with forward-thinking experience should be available to everyone, Found aims to assist our clients in closing the gap between ambition and realization. Found is a digital design consultancy.">
+	<meta property="og:site_name" content="Found.">
+	<meta property="og:title" content="">
+	<meta property=”og:type” content=”website” />
+	<meta property="og:description" content="Based on the idea that stunning visual design combined with forward-thinking experience should be available to everyone, Found aims to assist our clients in closing the gap between ambition and realization. Found is a digital design consultancy.">
+	<meta property="og:image" content="">
+
+	<link rel="stylesheet" href="/assets/css/foundation.css" type="text/css">
+	<link rel="stylesheet" href="/assets/css/style.css" type="text/css">
+	<link rel="stylesheet" href="/assets/css/owl.carousel.css">
+	<link rel="stylesheet" href="/assets/css/owl.theme.default.css">
+	<link rel="stylesheet" href="/assets/css/animate.css">
+	<link rel="stylesheet" href="/assets/css/fontface.css">
+
+	<!-- Type -->
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,900" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=EB+Garamond" rel="stylesheet">
+	<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script src="/assets/js/vendor/jquery.js"></script>
+	<script src="/assets/js/vendor/fastclick.js"></script>		
+	<script src="/assets/js/vendor/modernizr.js"></script>
+    <script src="/assets/js/foundation/foundation.js"></script>
+	<script src="/assets/js/foundation/foundation.equalizer.js"></script>	
+	<script src="/assets/js/main.js"></script>
+	<script src="/assets/js/header.js"></script>
+	<script src="/assets/js/owl.carousel.js"></script>
+    <script src="/assets/js/jquery.easing.1.3.js"></script>
+    <script src="/assets/js/masonry.pkgd.js"></script>
+
+    <script src="http://cdn.jsdelivr.net/scrollreveal.js/3.1.4/scrollreveal.min.js"></script>
+    <script src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+	<script src="http://cdn.jsdelivr.net/jquery.mixitup/latest/jquery.mixitup.min.js"></script>	
+</head>
+
+{% block content %}
+
+	<div style="background-color: white; height: 100%;">
+
+		<section class="row padding">
+			<div class="left column">
+	          	<div class="large-8 medium-10 small-12">
+	          		<h1 class="bump">This site is being reimagined, please stay tuned.</h1>
+	            	<h2 class="bump">Based on the idea that stunning visual design combined with <span class="underline">forward-thinking</span> experience should be available to everyone, Found aims to assist our clients in <span class="underline">closing the gap</span> between ambition and realization.</h2>
+	            	<h2><b>Found</b> is a digital design consultancy.</h2>
+	          	</div>
+	          	<div class="left social">
+	          		<a class="light" href="http://facebook.com/foundoslo" target="_blank">Facebook</a> / 
+			  		<a class="light" href="http://twitter.com/foundoslo" target="_blank">Twitter</a> /
+	          		<a class="light" href="http://instagram.com/foundoslo" target="_blank">Instagram</a>
+	          	</ul>
+			</div>
+
+		</section>
+
+	</div>
+
+{% endblock %}

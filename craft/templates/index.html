@@ -1,0 +1,327 @@
+{% extends "_layout" %}
+
+{% block content %}
+
+<main class="home">
+
+	<section class="intro" style="background-color: #ffffff;">
+		
+		<div class="row padding article-intro">
+			<div class="large-8 medium-10 small-12 columns left">
+		    	<h1>{{entry.intro}}</h1>
+		    	<h2>{{entry.introBody}}</h2>
+				<p class="left underline flat">
+					<a href="#about">Studio profile</a>
+				</p>
+			</div>
+		</div>
+
+	</section>
+
+	<section  id="start" class="in-progress" style="background-color: #ffffff;">
+
+		<div class="padding">
+		
+			<div class="row">
+				<div class="columns padding"> 
+					<p class="small caps bump">In progress</p>
+				</div>
+			</div>
+
+			<div class="row">
+			{% for entry in craft.entries.section('projects') %}
+				{% if entry.comingSoon %}
+					<article class="large-6 medium-6 columns left">
+						{% set menuThumb = entry.menuThumb.first() %}
+						{% if menuThumb %}
+						    <img class="bump" src="{{ menuThumb.url }}" />
+						{% endif %}
+
+				    	<h2 class="large-10 medium-10 small-12 flat">{{entry.intro}}</h2>
+						<p class="light">{{entry.intro}}</p>
+						<a class="small visit caps pink">Coming soon</a>
+					</article>
+
+				    {% endif %}
+
+				{% endfor %}
+			</div>
+		
+		</div>
+	</section>
+
+	<section id="start">
+
+		{% for entry in craft.entries.section('projects') %}
+
+			{% if entry.showcase == '1' %}
+
+				{% if entry.alignRight == '1' %}
+
+					<!-- Align Image Right -->
+					<div style="background-color: #{{ entry.hexCode }};">
+						<article class="row">
+							
+								<div class="columns f-case">
+
+									<div class="large-5 medium-5 small-12 left case-info">
+										<div class="columns">
+											<div class="first">
+												<h2 class="entry-title caps bold">{{entry.Title}}</h2>
+												{% set categories = entry.category %}
+
+												{% if categories | length %}
+
+										    	<ul class="inline">
+												    {% for category in categories %}
+											    		<li><p class="small caps pink">{{category.title}}</p></li>
+												    {% endfor %}
+										    	</ul>
+
+												{% endif %}
+												<p class="entry-intro hide-for-small-only">{{entry.intro}}</p>
+
+												<a class="transition left" href="{{entry.url}}" style=" margin: 2em 0;">
+													<button>View case</button>
+												</a>
+											</div>
+										</div>
+
+									</div>
+
+									{% if entry.imgPaddingTop %}
+
+									<!-- Image -->
+									<div class="large-6 medium-6 small-12 right case-image">
+										<div class="box">
+											{% set desktopThumb = entry.desktopThumb.first() %}
+											{% if desktopThumb %}
+											    <img src="{{ desktopThumb.url }}"/>
+											{% endif %}
+										</div>
+									</div>
+
+									{% elseif entry.imgPaddingBoth %}
+
+									<!-- Image -->
+									<div class="large-6 medium-6 small-12 right case-image padding">
+										<div class="box">
+											{% set desktopThumb = entry.desktopThumb.first() %}
+											{% if desktopThumb %}
+											    <img src="{{ desktopThumb.url }}"/>
+											{% endif %}
+										</div>
+									</div>
+
+									{% else %}
+
+									<!-- Image -->
+									<div class="large-6 medium-6 small-12 right">
+										<div class="box">
+											{% set desktopThumb = entry.desktopThumb.first() %}
+											{% if desktopThumb %}
+											    <img src="{{ desktopThumb.url }}"/>
+											{% endif %}
+										</div>
+									</div>
+
+									{% endif %}
+
+								</div>
+							</a>
+						</article>
+					</div>
+
+				{% elseif entry.alignCenter == '1' %}
+
+					<!-- Align center -->
+					<div style="background-color: #{{ entry.hexCode }};">
+						<article class="row">
+
+							<div class="case-info padding">
+								<div class="large-12 medium-12 small-12 center">
+									<h2 class="entry-title caps bold bump text-center">{{entry.Title}}</h2>
+
+								    {% for block in entry.projectBlocks %}
+
+								    	{% if block.type == "fullImage" %}
+										    {% if block.frontpageCase == '1' %}
+									    	<div class="columns left bump"> 
+											    {% for asset in block.image %}
+									            <div class="box">
+									            	<img src="{{asset.url}}" />												    
+									            </div>
+												{% endfor %}
+									        </div>
+											{% endif %}
+										{% endif %}
+
+										{% if block.type == "gallerySingle" %}
+											{% if block.frontpageCase == '1' %}
+											<div class="columns bump">
+												<div class="owl-carousel gallery1 images">
+													{% for asset in block.image %}
+														<div class="item">
+															<img src="{{ asset.url }}" alt="{{entry.title}}" />
+														</div>							  
+													{% endfor %}
+												</div>
+											</div>
+											{% endif %}
+										{% endif %}
+
+										{% if block.type == "galleryMultiple" %}
+											{% if block.frontpageCase == '1' %}
+											<div class="columns bump">
+												<div class="owl-carousel gallery2 images">
+													{% for asset in block.image %}
+														<div class="item">
+															<img src="{{ asset.url }}" alt="{{entry.title}}" />
+														</div>							  
+													{% endfor %}
+												</div>
+											</div>
+											{% endif %}
+										{% endif %}
+										
+									{% endfor %}
+
+								<div class="large-8 medium-10 small-12 center">
+
+									{% if entry.ingress %}
+									    <p class="entry-intro">«{{entry.ingress}}»</p>
+									{% else %}
+									    No soup for you!
+									{% endif %}
+									
+									<p class="left share flat">Share
+										<span class="right">
+											<a href="#" class="light underline" onClick="window.open('https://www.facebook.com/sharer/sharer.php?u={{ entry.getUrl() }}','share','resizable,height=360,width=470'); return false;">Facebook</a>
+											<a href="#" class="light underline" onClick="window.open('https://twitter.com/home?status={% if entry.Title %}{{ entry.Title|url_encode }}{% else %}{{ entry.title|url_encode }}{% endif %}%20{{ entry.getUrl() }}','share','resizable,height=360,width=470'); return false;">Tweet this</a>
+											<a class="light underline" href="mailto:?Subject=Netflix Media Center: {{ entry.title }}&Body={% if entry.title %}{{ entry.title }}{% endif %}%20{{ entry.getUrl() }}">Share via email</a>
+										</span>
+									</p>
+								</div>
+
+							</div>
+						</article>
+					</div>
+
+				{% else %}
+
+					<!-- Align Left -->
+					<div style="background-color: #{{ entry.hexCode }};">
+						<article class="row">
+							<div class="column f-case">
+
+									<!-- Text -->
+									<div class="large-5 medium-5 small-12 right case-info hide-for-small-only">
+										<div class="columns">
+											<h2 class="entry-title caps bold">{{entry.Title}}</h2>
+											{% set categories = entry.category %}
+
+											{% if categories | length %}
+
+										    	<ul class="inline">
+												    {% for category in categories %}
+											    		<li><p class="small caps pink">{{category.title}}</p></li>
+												    {% endfor %}
+										    	</ul>
+
+											{% endif %}
+											<p class="entry-intro hide-for-small-only">{{entry.intro}}</p>
+
+											<a class="transition left" href="{{entry.url}}" style=" margin: 2em 0;">
+												<button>View case</button>
+											</a>											
+										</div>
+									</div>
+
+									{% if entry.imgPaddingTop %}
+
+									<!-- Image -->
+									<div class="large-6 medium-6 small-12 left case-image">
+										<div class="box">
+											{% set desktopThumb = entry.desktopThumb.first() %}
+											{% if desktopThumb %}
+											    <img src="{{ desktopThumb.url }}" object-fit: contain'/>
+											{% endif %}
+										</div>
+									</div>
+
+									{% elseif entry.imgPaddingBoth %}
+
+									<!-- Image -->
+									<div class="large-6 medium-6 small-12 left case-image padding">
+										<div class="box">
+											{% set desktopThumb = entry.desktopThumb.first() %}
+											{% if desktopThumb %}
+											    <img src="{{ desktopThumb.url }}" object-fit: contain'/>
+											{% endif %}
+										</div>
+									</div>
+
+									{% else %}
+
+									<!-- Image -->
+									<div class="large-6 medium-6 small-12 left">
+										<div class="box">
+											{% set desktopThumb = entry.desktopThumb.first() %}
+											{% if desktopThumb %}
+											    <img src="{{ desktopThumb.url }}" object-fit: contain'/>
+											{% endif %}
+										</div>
+									</div>
+
+									{% endif %}
+							</div>
+						</article>
+					</div>
+
+				{% endif %}
+
+			{% endif %}
+
+		{% endfor %}
+		
+	</section>
+
+</main>
+
+<div class="main padding">
+	<div class="row inquire reveal">
+		<div class="columns left open-menu" style="cursor: pointer;">
+			<h2 class="left underline flat">More work?</h2>
+		</div>
+	</div>
+</div>
+
+<section id="about" class="dark about">
+
+	<div class="row">
+		
+		<div class="article-intro left">
+			
+			<div class="left columns small-padding">
+				<p class="small caps left">About the studio</p>
+			</div>
+
+			<div class="large-6 medium-8 small-12 left columns">
+				<h1>Building digital design solutions for all screens.</h1>
+			</div>
+
+			<article class="large-8 medium-10 small-12 left columns">
+				<div class="center">
+			    	<h2 class="light">Found is a Oslo-based design studio, run by senior digital designer & art-director Erling Aarønæs. Being committed to quality design with a human-centered approach, Found aims to make sure that the right skills are brought to each project.</h2>
+			    	<h2 class="light">Want to talk aboit a project? <a href="mailto:hello@foundoslo.no?subject=Business Inquiry"><b>Email me</b></a> or <a href="tel:+4798660788"><b>give me a call</b></a>.</h2>
+				</div>
+				<a href="/about""><p class="left underline flat">Read more...</p></a>
+			</article>
+	    	
+		</div>
+    
+	</div>
+	
+</section>	
+
+{% endblock %}
