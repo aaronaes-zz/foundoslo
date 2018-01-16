@@ -249,6 +249,7 @@
   .align {
     position: relative;
     }
+    
   .align__vertical {
     top: 50%;
     transform: perspective(1px) translateY(-50%);
