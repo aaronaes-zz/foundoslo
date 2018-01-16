@@ -34,8 +34,8 @@
   body {
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
     /* font-family: 'Moderat Regular',sans-serif; */
-    /* font-size: 18px; */
-    font-size: 1.375rem;
+    font-size: 18px;
+    /* font-size: 1.375rem; */
     color: rgba(65,69,73,1);
     font-weight: normal;
     font-stretch: normal;
