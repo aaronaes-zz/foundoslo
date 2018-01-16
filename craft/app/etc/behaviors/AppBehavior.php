@@ -303,8 +303,8 @@ class AppBehavior extends BaseBehavior
 	 */
 	public function canUpgradeEdition()
 	{
-		// Only admins can upgrade Craft
-		if (craft()->userSession->isAdmin())
+		// Only admin & client accounts can upgrade Craft
+		if (craft()->userSession->isAdmin() || (craft()->getEdition() === Craft::Client))
 		{
 			// Are they either *using* or *licensed to use* something < Craft Pro?
 			$activeEdition = $this->getEdition();
@@ -953,11 +953,14 @@ class AppBehavior extends BaseBehavior
 	 */
 	private function _getFallbackLanguage()
 	{
-		// See if we have the CP translated in one of the user's browsers preferred language(s)
-		$language = craft()->getTranslatedBrowserLanguage();
+		if (!craft()->isConsole())
+		{
+			// See if we have the CP translated in one of the user's browsers preferred language(s)
+			$language = craft()->getTranslatedBrowserLanguage();
+		}
 
 		// Default to the source language.
-		if (!$language)
+		if (empty($language))
 		{
 			$language = craft()->sourceLanguage;
 		}

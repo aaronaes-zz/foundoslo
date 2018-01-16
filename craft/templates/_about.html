@@ -2,159 +2,104 @@
 
 {% block content %}
 
-<main class="about dark">
-	
-	<section class="row article-intro">
-								
-    	<article class="columns left">
-	    	<div class="large-7 medium-9 small-12">
-	    		<!-- <h1>{{entry.aboutTitle}}</h1> -->
-	    		<h1 class="large-11 medium-11">{{entry.aboutHeading}}</h1>
-	    	</div>
-	    	<div class="large-7 medium-9 small-12">
-				<h2 class="light">{{entry.aboutSubheading}}</h2>
-			</div>
-    	</article>
+<section class="about">
 
-    	{% for block in entry.aboutBlocks %}
+	<main class="grid grid__about padding">
 
-			{% if block.type == "singleGallery" %}
-				<div class="columns bump">
-					<div class="owl-carousel gallery1 images">
-						{% for asset in block.image %}
-							<div class="item">
-								<img src="{{ asset.url }}" alt="{{entry.title}}" />
-							</div>							  
-						{% endfor %}
-					</div>
+		<!-- Lead -->
+		<div class="row">
+			<div class="columns">
+				<div class="large-10 medium-10 small-er center">
+					<h2>{{entry.aboutTitle}}</h2>
+					<p>{{entry.aboutHeading}}</p>
 				</div>
+			</div>
+		</div>
+
+		<div class="row">
+
+			{% for block in entry.aboutBlocks %}
+			{% if block.type == "singleGallery" %}
+			<div class="columns">
+				<div class="owl-carousel gallery1 images">
+					{% for asset in block.image %}
+					<div class="item">
+						<img src="{{ asset.url }}" alt="{{entry.title}}" />
+					</div>
+					{% endfor %}
+				</div>
+			</div>
 			{% endif %}
 
 			{% if block.type == "multipleGallery" %}
-				<div class="columns bump">
-					<div class="owl-carousel gallery2 images">
-						{% for asset in block.image %}
-							<div class="item">
-								<img src="{{ asset.url }}" alt="{{entry.title}}" />
-							</div>							  
-						{% endfor %}
-					</div>
-				</div>
-			{% endif %}
-
-		{% endfor %}
-						
-		<article class="columns left">
-			 <div class="owl-carousel gallery1 images">
-
-				{% for asset in entry.gallery %}
-					<div class="item slide">
-						<img src="{{ asset.url }}" alt="{{entry.title}}" />
-					</div>							  
-				{% endfor %}
-				
-			</div>
-
 			<div class="columns">
-				<div class="slider-dots"></div>
+				<div class="owl-carousel gallery2 images">
+					{% for asset in block.image %}
+					<div class="item">
+						<img src="{{ asset.url }}" alt="{{entry.title}}" />
+					</div>
+					{% endfor %}
+				</div>
 			</div>
-
-		</article>
-
-		<div class="left large-12 medium-12 small-12 process">
-
-			<div class="small-padding columns">
-				<p class="small caps">Ok, good. So, how does it all work?</p>
-			</div>
-
-			{% for block in entry.process %}
-
-			    {% if block.type == "processItem" %}
-
-					<article class="large-4 medium-4 left">
-						<div class="column">
-							<h2>{{block.blockTitle}}</h2>
-							<h2 class="light">{{block.text}}</h2>
-						</div>
-					</article>
-
-			    {% endif %}
-
+			{% endif %}
 			{% endfor %}
-
 		</div>
 
-<!-- 	</section>
+		<div class="row">
 
-	<div class="left" style="height: 50vh; background-image: url('../uploads/slider-5.jpg');">
-	</div>
+			<div class="large-10 medium-10 small-12 center process">
+				{% for block in entry.process %}
+					{% if block.type == "processItem" %}
+					<article class="left columns">
+						<blockquote>{{block.blockTitle}}</blockquote>
+						<p class="flat">{{block.text}}</p>
+					</article>
+				{% endif %}
+			{% endfor %}
+			</div>
 
-	<section class="row"> -->
-
-		<div class="large-6 medium-6 small-12 left">
-			<article class="left">
-
-				<div class="small-padding columns left">
-					<p class="small caps">What specifically can I do you for business?</p>
-				</div>
-		
-				<div class="columns">
-
-					<div class="clients left bump">
-
-						{% for block in entry.services %}
-
-						    {% if block.type == "serviceItem" %}
-
-						        <h2>{{ block.serviceTitle }}</h2>
-
-						    {% endif %}
-
-						{% endfor %}
-
+			<div class="large-10 medium-10 small-12 center">
+				<article class="left">
+					<div class="columns left">
+						<blockquote>What specifically can I do you for your business?</blockquote>
+						<ul class="left">
+							{% for block in entry.services %}
+								{% if block.type == "serviceItem" %}
+								<li><p>{{ block.serviceTitle }}</p></li>
+								{% endif %}
+							{% endfor %}
+						</ul>
 					</div>
-				</div>
-				<div class="columns">
-					<p class="left light">Unsure about that you need? <a class="visit pink" href="mailto:hello@foundoslo.no=Let's colaborate!">Ask for help!</a></p>
-				</div>
-				
-			</article>
-		</div>
+				</article>
+			</div>
 
-		<div class="large-6 medium-6 small-12 left">
-			<article class="left">
-
-				<div class="small-padding columns">
-					<p class="small caps">Have you worked for any cool companies?</p>
-				</div>
-
-		    	<div class="columns">
-					<div class="clients left bump">
-
+			<div class="large-10 medium-10 small-12 center">
+				<article class="left columns">
+					<div class="clients">
+						<blockquote class="left">Client list</blockquote>
+						<ul class="left">
 						{% for block in entry.clients %}
-
-						    {% if block.type == "clientItem" %}
-
-						        <h2>{{ block.clientTitle }}</h2>
-
-						    {% endif %}
-
+							{% if block.type == "clientItem" %}
+								<li><p>{{ block.clientTitle }}</p></li>
+							{% endif %}
 						{% endfor %}
-
+					</ul>
+						<p class="left light">Thanks to my clients for the collaboration and my friends for helping out! :)</p>
 					</div>
-			    	<p class="light">Much thanks to our clients for the collaboration and our friends for helping out! :)</p>
-		    	</div>
-	    	</article>
-	    </div>
+				</article>
+			</div>
 
-		<article class="large-8 medium-8 small-12 left columns">
-			<p class="small caps">Interested in inquiring about a project?</p>
-			<h2 class="light"><a href="mailto:hello@foundoslo.no?subject=Business Inquiry"><b>Get in touch</b></a> to find out how I can help. You can also <a href="tel:+4798660788"><b>call me</b></a>.</h2>
-			<h2 class="light">Sometimes I post stuff online. Follow on <a class="transition" target="_blank" href="http://www.facebook.com/foundoslo">Facebook</a>, <a class="transition" target="_blank" href="http://www.instagram.com/foundoslo">Instagram</a> and <a class="transition" target="_blank" href="http://www.tiwtter.com/foundoslo">Twitter</a>.</h2>
-		</article>
-	    	
-	</section>
+			<div class="large-10 medium-10 small-12 center">
+				<article class="left columns">
+					<blockquote>Interested in inquiring about a project?</blockquote>
+					<p class="left flat"><a class=" href="mailto:hello@foundoslo.no?subject=Business Inquiry">Get in touch</a> to find out how I can help. You can also <a class=" href="tel:+4798660788">call me</a>.<br />
+					Sometimes I post stuff online. Follow on <a class="transition" target="_blank" href="http://www.facebook.com/foundoslo">Facebook</a>, <a class="transition" target="_blank" href="http://www.instagram.com/foundoslo">Instagram</a> and <a class="transition" target="_blank" href="http://www.tiwtter.com/foundoslo">Twitter</a>.</p>
+				</article>
+			</div>
 
-</main>
+		</div>
+
+	</main>
+</section>
 
 {% endblock %}

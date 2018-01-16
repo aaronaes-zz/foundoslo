@@ -1,0 +1,115 @@
+{% extends "_layout" %}
+
+{% block content %}
+
+<section class="about">
+
+	<main class="grid grid__about">
+
+		<!-- Lead -->
+		<div class="row">
+			<div class="columns">
+				<div class="left">
+					<h1 class="bold">{{entry.aboutTitle}}</h1>
+					<h1>{{entry.aboutHeading}}</h1>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+
+			{% for block in entry.aboutBlocks %}
+			{% if block.type == "singleGallery" %}
+			<div class="columns">
+				<div class="owl-carousel gallery1 images">
+					{% for asset in block.image %}
+					<div class="item">
+						<img src="{{ asset.url }}" alt="{{entry.title}}" />
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+			{% endif %}
+
+			{% if block.type == "multipleGallery" %}
+			<div class="columns">
+				<div class="owl-carousel gallery2 images">
+					{% for asset in block.image %}
+					<div class="item">
+						<img src="{{ asset.url }}" alt="{{entry.title}}" />
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+			{% endif %}
+		{% endfor %}
+	</div>
+
+		<div class="row">
+			<div class="columns">
+				<h1>Basically.</h1>
+			</div>
+
+			<div class="large-12 medium-12 small-12 left process">
+				{% for block in entry.process %}
+					{% if block.type == "processItem" %}
+					<article class="left">
+						<div class="column">
+							<h2 class="left flat"><strong>{{block.blockTitle}}</strong></h2>
+							<h2 class="left">{{block.text}}</h2>
+						</div>
+					</article>
+				{% endif %}
+			{% endfor %}
+			</div>
+
+			<div class="large-12 medium-12 small-12 left">
+				<div class="left">
+					<div class="columns left">
+						<h2 class="left flat"><strong>What specifically can I do you for your business?</strong></h2>
+					</div>
+					<div class="columns">
+						<div class="left">
+							{% for block in entry.services %}
+								{% if block.type == "serviceItem" %}
+								<h2>{{ block.serviceTitle }}</h2>
+								{% endif %}
+							{% endfor %}
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="large-12 medium-12 small-12 left">
+				<article class="left">
+
+					<div class="columns">
+						<h2 class="left flat"><strong>Client list</strong></h2>
+					</div>
+
+					<div class="columns">
+						<div class="left">
+							{% for block in entry.clients %}
+								{% if block.type == "clientItem" %}
+								<h2>{{ block.clientTitle }}</h2>
+								{% endif %}
+							{% endfor %}
+						</div>
+						<h3 class="left light">Thanks to my clients for the collaboration and my friends for helping out! :)</h3>
+					</div>
+				</article>
+			</div>
+
+			<article class="large-12 medium-12 small-12 left columns">
+				<h2 class="left bold">Interested in inquiring about a project?</h2>
+				<h2 class="left flat"><a class=" href="mailto:hello@foundoslo.no?subject=Business Inquiry">Get in touch</a> to find out how I can help. You can also <a class=" href="tel:+4798660788">call me</a>.</h2>
+				<h2 class="left flat">Sometimes I post stuff online. Follow on <a class="transition" target="_blank" href="http://www.facebook.com/foundoslo">Facebook</a>, <a class="transition" target="_blank" href="http://www.instagram.com/foundoslo">Instagram</a> and <a class="transition" target="_blank" href="http://www.tiwtter.com/foundoslo">Twitter</a>.</h2>
+			</article>
+
+		</section>
+
+	</main>
+</section>
+
+{% endblock %}

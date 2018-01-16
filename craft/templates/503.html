@@ -1,72 +1,187 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+
 <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta http-equiv="cleartype" content="on" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta property="og:image" content="" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
 
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<meta http-equiv="cleartype" content="on">
-	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<meta property="og:image" content=""/>
-	<meta name="apple-mobile-web-app-capable" content="yes" />
+  <title>{% if title is defined %}{{ title }} - {% endif %}{{ siteName }}</title>
+  <link rel="home" href="{{ siteUrl }}" />
 
-	<title>{% if title is defined %}{{ title }} - {% endif %}{{ siteName }}</title>
-	<link rel="home" href="{{ siteUrl }}" />
+  <meta name="description" content="Based on the idea that stunning visual design combined with forward-thinking experience should be available to everyone, Found aims to assist our clients in closing the gap between ambition and realization. Found is a digital design consultancy."
+  />
+  <meta property="og:site_name" content="Found." />
+  <meta property="og:title" content="" />
+  <meta property=”og:type” content=”website”>
+  <meta property="og:description" content="Based on the idea that stunning visual design combined with forward-thinking experience should be available to everyone, Found aims to assist our clients in closing the gap between ambition and realization. Found is a digital design consultancy."
+  />
+  <meta property="og:image" content="" />
 
-	<meta name="description" content="Based on the idea that stunning visual design combined with forward-thinking experience should be available to everyone, Found aims to assist our clients in closing the gap between ambition and realization. Found is a digital design consultancy.">
-	<meta property="og:site_name" content="Found.">
-	<meta property="og:title" content="">
-	<meta property=”og:type” content=”website” />
-	<meta property="og:description" content="Based on the idea that stunning visual design combined with forward-thinking experience should be available to everyone, Found aims to assist our clients in closing the gap between ambition and realization. Found is a digital design consultancy.">
-	<meta property="og:image" content="">
+  <link rel="stylesheet" href="/assets/css/foundation.css" type="text/css">
+  <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/assets/owl.carousel.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+  <link rel="stylesheet" href="/assets/css/fontface.css">
+  <link rel="stylesheet" href="https://afeld.github.io/emoji-css/emoji.css">
+  <link rel="stylesheet" type="text/css" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
-	<link rel="stylesheet" href="/assets/css/foundation.css" type="text/css">
-	<link rel="stylesheet" href="/assets/css/style.css" type="text/css">
-	<link rel="stylesheet" href="/assets/css/owl.carousel.css">
-	<link rel="stylesheet" href="/assets/css/owl.theme.default.css">
-	<link rel="stylesheet" href="/assets/css/animate.css">
-	<link rel="stylesheet" href="/assets/css/fontface.css">
+  <!-- Type -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville" rel="stylesheet">
 
-	<!-- Type -->
-	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,900" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=EB+Garamond" rel="stylesheet">
-	<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-	<script src="/assets/js/vendor/jquery.js"></script>
-	<script src="/assets/js/vendor/fastclick.js"></script>		
-	<script src="/assets/js/vendor/modernizr.js"></script>
-    <script src="/assets/js/foundation/foundation.js"></script>
-	<script src="/assets/js/foundation/foundation.equalizer.js"></script>	
-	<script src="/assets/js/main.js"></script>
-	<script src="/assets/js/header.js"></script>
-	<script src="/assets/js/owl.carousel.js"></script>
-    <script src="/assets/js/jquery.easing.1.3.js"></script>
-    <script src="/assets/js/masonry.pkgd.js"></script>
+  <!-- Scripts -->
+  <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script src="/assets/js/vendor/jquery.js"></script>
+  <script src="/assets/js/vendor/fastclick.js"></script>
+  <script src="/assets/js/vendor/modernizr.js"></script>
+  <script src="/assets/js/foundation/foundation.js"></script>
+  <script src="/assets/js/foundation/foundation.equalizer.js"></script>
+  <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/carousel.js"></script>
+  <script src="/assets/js/header.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.min.js"></script>
+  <script src="http://cdn.jsdelivr.net/jquery.scrollto/2.1.2/jquery.scrollTo.min.js"></script>
+  <script src="/assets/js/jquery.easing.1.3.js"></script>
 
-    <script src="http://cdn.jsdelivr.net/scrollreveal.js/3.1.4/scrollreveal.min.js"></script>
-    <script src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
-	<script src="http://cdn.jsdelivr.net/jquery.mixitup/latest/jquery.mixitup.min.js"></script>	
+  <script src="http://cdn.jsdelivr.net/scrollreveal.js/3.1.4/scrollreveal.min.js"></script>
+  <script src="http://cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  <script src="http://cdn.jsdelivr.net/jquery.mixitup/latest/jquery.mixitup.min.js"></script>
+
 </head>
 
 {% block content %}
 
-	<div style="background-color: white; height: 100%;">
+<style type="text/css">
 
-		<section class="row padding">
-			<div class="left column">
-	          	<div class="large-8 medium-10 small-12">
-	          		<h1 class="bump">This site is being reimagined, please stay tuned.</h1>
-	            	<h2 class="bump">Based on the idea that stunning visual design combined with <span class="underline">forward-thinking</span> experience should be available to everyone, Found aims to assist our clients in <span class="underline">closing the gap</span> between ambition and realization.</h2>
-	            	<h2><b>Found</b> is a digital design consultancy.</h2>
-	          	</div>
-	          	<div class="left social">
-	          		<a class="light" href="http://facebook.com/foundoslo" target="_blank">Facebook</a> / 
-			  		<a class="light" href="http://twitter.com/foundoslo" target="_blank">Twitter</a> /
-	          		<a class="light" href="http://instagram.com/foundoslo" target="_blank">Instagram</a>
-	          	</ul>
-			</div>
+  html, body {
+    font-size: 18px;
+    line-height: 1.6;
+    }
 
-		</section>
+  p {
+    padding: 0px;
+  }
 
-	</div>
+  small {
+    font-size: .7rem;
+    line-height: 1.1rem
+  }
+
+  .light {
+    opacity: .5;
+  }
+
+  section.app {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    height: 100%;
+  }
+
+  .pin {
+    -webkit-align-self: center;
+    -ms-flex-item-align: center;
+    -ms-grid-row-align: center;
+    align-self: center;
+    position: relative;
+  }
+
+  .gallery3 {
+    padding-bottom: 20px;
+  }
+
+  .gallery3 .item img {
+    border-radius: 2px;
+    -webkit-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
+  }
+
+  .gallery3 .item:hover img {}
+
+  .padding {
+    padding: 0.9375em 0 0;
+  }
+
+  @media only screen and (max-width: 1024px) {
+
+    html,
+    body {
+      font-size: 16px;
+    }
+
+    .item {
+      height: auto;
+      overflow: hidden;
+    }
+
+    .gallery3 .item img {
+      position: relative;
+      top: auto;
+      transform: none;
+    }
+
+  }
+
+  @media only screen and (max-width: 414px) {
+
+    p {
+      font-size: 16px;
+    }
+
+    .item {
+      height: auto;
+      overflow: hidden;
+    }
+
+    .gallery3 .item img {
+      position: relative;
+      top: auto;
+      transform: none;
+
+    }
+
+  }
+</style>
+
+<section class="app">
+  <div class="row pin">
+
+    <div class="large-10 medium-10 center">
+      <div class="columns bump">
+        <p class="left"><b>Found</b> <i>aka</i> Erling Aaronaes&nbsp;<span class="right hide-for-small-only">— digital art director and designer.</span></p>
+      </div>
+    </div>
+
+    <div class="large-10 medium-10 center flat">
+      <div class="columns owl-carousel gallery3">
+        <div class="item"><img src="../assets/img/case/img1.jpg" /></div>
+        <div class="item"><img src="../assets/img/case/img2.jpg" /></div>
+        <div class="item"><img src="../assets/img/case/img3.jpg" /></div>
+        <div class="item"><img src="../assets/img/case/img4.jpg" /></div>
+        <div class="item"><img src="../assets/img/case/img5.jpg" /></div>
+        <div class="item"><img src="../assets/img/case/img6.jpg" /></div>
+        <div class="item"><img src="../assets/img/case/img7.jpg" /></div>
+        <div class="item"><img src="../assets/img/case/img8.jpg" /></div>
+        <div class="item"><img src="../assets/img/case/img9.jpg" /></div>
+        <div class="item"><img src="../assets/img/case/img10.jpg" /></div>
+        <div class="item"><img src="../assets/img/case/img11.jpg" /></div>
+        <div class="item"><img src="../assets/img/case/img12.jpg" /></div>
+      </div> 
+    </div>
+
+    <div class="large-10 medium-10 center">
+      <div class="columns">
+        <p class="left"><a href="http://www.twitter.com/foundoslo">@foundoslo</a></p>
+        <p class="right"><a href="mailto:hello@foundoslo.no">Hire me</a></p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 
 {% endblock %}

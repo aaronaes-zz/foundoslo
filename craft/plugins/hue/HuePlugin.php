@@ -65,11 +65,13 @@ class HuePlugin extends BasePlugin
   /**
    * Return the plugin's current version
    *
+   * (Major.Feature.Build)
+   *
    * @return string
    */
   public function getVersion()
   {
-    return '1.0.0';
+    return '1.1.1';
   }
 
   /**
@@ -83,7 +85,7 @@ class HuePlugin extends BasePlugin
   }
 
   /**
-   * Return the plugin's db schema version
+   * Return the plugin's Release Feed URL
    *
    * @return string
    */

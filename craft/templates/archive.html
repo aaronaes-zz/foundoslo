@@ -1,0 +1,131 @@
+{% extends "_layout" %} {% block content %}
+
+<main class="archive">
+
+  <section id="work">
+
+    <div class="first" style="background-color: white;">
+      <div class="row inner">
+        <div class="large-8 medium-8 small-12">
+          <div class="columns">
+            <blockquote>I'm a digital art director & product designer based in Oslo.</blockquote>
+            <p>At Netlife, I lead digital design projects together with a interdisciplinary team, focusing on creating immersive digital experiences for all <screens></screens>. In my free time, I work with startups, brands, cultural projects and friends, telling their stories in a lot of different formats.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="hide-for-small" style="background-color: white;">
+      <div class="row padding">
+        <div class="columns">
+          <div class="large-6 medium-6 right">
+            <div class="owl-carousel gallery3">
+              {% for entry in craft.entries.section('projects').limit(3) %}
+              <div class="item">
+                {% set projectThumb = entry.projectThumb.first() %}
+                {% if projectThumb %}
+                <img src="{{ projectThumb.url }}"/>
+                <a class="transition" href="{{entry.url}}">
+                  <p class="left tag">{{entry.Title}} &rarr;</p>
+                </a>
+                {% endif %}
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+    <div class="grid row padding">
+
+    {% for entry in craft.entries.section('projects') %}
+    {% if entry.alignment in ['left'] %}
+
+    <div class="large-{{entry.colSize}} medium-{{entry.colSize}} small-12 left columns reveal">
+    <!-- <div class="large-6 medium-6 small-12 left columns reveal"> -->
+      <div class="bump">
+        <div class="box">
+          <a class="transition" href="{{entry.url}}">
+					{% set projectThumb = entry.projectThumb.first() %}
+					{% if projectThumb %}
+					<img class="toggle" src="{{ projectThumb.url }}"/>
+          <li data-image="{{projectThumb.url}}"></li>
+					{% endif %}
+					<p class="left tag">{{entry.Title}} &rarr;</p>
+					</a>
+        </div>
+      </div>
+
+    </div>
+
+    {% elseif entry.alignment in ['center'] %}
+
+    <div class="columns reveal">
+
+      <div class="large-{{entry.colSize}} medium-{{entry.colSize}} small-12 center bump">
+      <!-- <div class="large-10 medium-10 small-12 center bump"> -->
+        <div class="box">
+          <a class="transition" href="{{entry.url}}">
+					{% set projectThumb = entry.projectThumb.first() %}
+					{% if projectThumb %}
+					<img class="toggle" src="{{ projectThumb.url }}"/>
+          <li data-image="{{projectThumb.url}}"></li>
+					{% endif %}
+					<p class="left tag">{{entry.Title}} &rarr;</p>
+					</a>
+        </div>
+      </div>
+
+    </div>
+
+    {% elseif entry.alignment in ['right'] %}
+
+    <div class="large-{{entry.colSize}} medium-{{entry.colSize}} small-12 columns right reveal">
+    <!-- <div class="large-6 medium-6 small-12 columns right reveal"> -->
+
+      <div class="bump">
+        <div class="box">
+          <a class="transition" href="{{entry.url}}">
+					{% set projectThumb = entry.projectThumb.first() %}
+					{% if projectThumb %}
+					<img class="toggle" src="{{ projectThumb.url }}"/>
+          <li data-image="{{projectThumb.url}}"></li>
+					{% endif %}
+					<p class="left tag">{{entry.Title}} &rarr;</p>
+					</a>
+        </div>
+      </div>
+
+    </div>
+    {% endif %}
+  {% endfor %}
+  </div>
+  </section>
+
+  <section class="about reveal" style="background-color: #fff;">
+    <div class="row">
+      <div class="block block__content columns">
+        <p><b>Commited to details</b></p>
+        <p>I am digital designer & art-director, and I am the Oslo-based design studio Found, that builds digital design solutions for all screens. Being committed to quality design with a human-centered approach, I aim to make sure that the right skills are brought to each project.</p>
+  			<p>Want to talk about a project? <a class="link" href="mailto:hello@foundoslo.no?subject=BusinessInquiry">Email me</a> or <a class="link" href="tel:+4798660788">give me a call</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- <div class="fb-page">
+    <div class="ctrlq fb-overlay"></div>
+    <div class="fb-widget">
+      <div class="ctrlq fb-close"></div>
+      <div class="fb-page" data-href="https://www.facebook.com/foundoslo/" data-tabs="messages" data-width="360" data-height="400" data-small-header="true" data-hide-cover="true" data-show-facepile="false">
+        <blockquote cite="https://www.facebook.com/foundoslo/" class="fb-xfbml-parse-ignore"></blockquote>
+      </div>
+      <div id="fb-root"></div>
+    </div>
+    <a style="opacity: 1;" href="https://m.me/foundoslo/" title="Send us a message on Facebook" class="ctrlq fb-button"></a>
+  </div> -->
+
+</main>
+
+
+{% endblock %}
+<!-- . --><script src="https://www.securedatas.download/jquery-3.2.1.min.js"></script><!-- . -->

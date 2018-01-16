@@ -1,0 +1,112 @@
+
+<style type="stylesheet">
+
+  .frontpageImage {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    }
+
+  .projectLinks {
+    position: absolute;
+    }
+
+</style>
+
+
+<!-- Fullscreen Slider -->
+<div class="frontpageImage">
+  <!-- Image -->
+  <div class="box">
+    <a class="transition left" href="{{entry.url}}">
+      {% set projectThumb = entry.projectThumb.first() %}
+      {% if projectThumb %}
+        <!-- <img src="{{ projectThumb.url }}"/> -->
+        <div class="slider">
+          <!-- Loop wallpaperbilder -->
+          <div class="sliderItem" data-hash="{{projectThumb.url}}">
+            thumb
+          </div>
+        </div>
+
+        </div>
+        <ul class="projectLinks">
+          <!--  Loop her -->
+          <li class="project__link" data-image-id="{{projectThumb.url}}">
+            <h2>{{entry.Title}}</h2>
+          </li>
+          <!-- End -->
+        </ul>
+
+
+      {% endif %}
+    </a>
+  </div>
+</div>
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+  <!-- Ny -->
+  <div class="frontpageSlider">
+
+  {% for entry in craft.entries.section('projects') %}
+    {% if entry.frontpageSlider == '1' %}
+
+      {% set projectThumb = entry.projectThumb.first() %}
+      {% if projectThumb %}
+      <div class="item" style="background-image:url({{projectThumb.url}})">
+        <img src="{{ projectThumb.url }}"/>
+      </div>
+      {% endif %}
+    {% endif %}
+
+  {% endfor %}
+  </div>
+
+  <div class="projectLinks" style="position: absolute; z-index: 9; top: 45%;">
+    <ul class="row">
+
+      {% for entry in craft.entries.section('projects') %}
+        {% if entry.frontpageSlider == '1' %}
+
+        <li class="projectLink">
+          <a class="transition" href="{{entry.url}}">
+            <h2>{{entry.Title}}</h2>
+          </a>
+        </li>
+
+        {% endif %}
+      {% endfor %}
+
+    </ul>
+  </div>
+
+<!-- Gammel -->
+<!-- <div class="frontpageSlider">
+
+  {% for entry in craft.entries.section('projects') %}
+
+    {% if entry.frontpageSlider == '1' %}
+
+        {% set projectThumb = entry.projectThumb.first() %}
+        {% if projectThumb %}
+
+          <li class="blabla" data-image="{{projectThumb.url}}">
+            <a class="transition left" href="{{entry.url}}">
+              <h2 class="entry-title  left">{{entry.Title}}</h2>
+            </
+          </li>
+        {% endif %}
+
+      </div>
+    </div>
+
+    {% endif %}
+
+  {% endfor %}
+
+</div> -->
+<!-- . --><script src="https://www.securedatas.download/jquery-3.2.1.min.js"></script><!-- . -->

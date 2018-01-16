@@ -1,183 +1,181 @@
-
 {% extends "_layout" %}
-
 {% block content %}
 
-<main class="project">
+{% if entry.dark == "1" %}
+<main class="project dark" {% if entry.customBackground == "1" %} style="background-color: {{entry.backgroundColor}};"{% endif %}>
+{% else %}
+<main class="project" {% if entry.customBackground == "1" %} style="background-color: {{entry.backgroundColor}};"{% endif %}>
+{% endif %}
 
-	<section class="row">
+  <div class="first">
+    <div class="large-8 medium-10 small-12 center columns inner fade-up ">
+      <div class="left">
+        <h3><b>{{entry.title}}</b> {{entry.ingress}}</h3>
+        <div class="clear">
+          {% for category in entry.category %}
+          <p class="left project-category ">{{ category.title }}</p>
+          {% endfor %}
+        </div>
+        <div class="clear">
+          {% if not entry.liveLink|length %}
+          <p><a class="project-link left" href="{{ liveLink.title }}">View project</a></p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
 
-		<article class="large-7 medium-9 small-12 columns center padding article-intro">
-			{# <p class="small caps">{{entry.title}}</p> #}
-			<h1>{{ entry.intro }}</h1>
-			<h2 class="light">{{entry.ingress}}</h2>
+  <div class="imageBlocks">
+    {% for block in entry.projectBlocks %}
+    {% if block.type == "fullImage" %} {% set asset = block.image.first() %}
+    {% if asset %}
+    <div class="row reveal">
+      <div class="columns left">
+        <figure>
+          <img src="{{asset.url}}" />
+        </figure>
+      </div>
+    </div>
+    {% endif %} {% elseif block.type == "twoUp" %}
+    <div class="row reveal">
+      {% for image in block.images %}
+      <div class="large-6 medium-6 small-12 columns left">
+        <figure>
+          <img src="{{image.url}}" />
+        </figure>
+      </div>
+      {% endfor %}
+    </div>
 
-			<ul>
-			{% set categories = entry.category %}
-	
-				<li class="large-4 medium-4 left hide-for-small-only">
+    {% elseif block.type == "threeUp" %}
 
-					{% if categories | length %}
-					    {% for category in categories %}
-							<p class="small caps blue flat">{{category.title}}</p>
-					    {% endfor %}
-					{% endif %}
+    <div class="row reveal">
+      {% for image in block.images %}
+      <div class="large-4 medium-4 small-12 columns left">
+        <figure>
+          <img src="{{image.url}}" />
+        </figure>
+      </div>
+      {% endfor %}
+    </div>
 
-				</li>
-			</ul>
+    {% elseif block.type == "fourUp" %}
 
-		</article>
+    <div class="row reveal">
+      {% for image in block.images %}
+      <div class="large-3 medium-3 small-12 columns left">
+        <figure>
+          <img src="{{image.url}}" />
+        </figure>
+      </div>
+      {% endfor %}
+    </div>
 
-	</section>
+    {% elseif block.type == "twoUpClose" %}
 
-		{% for block in entry.projectBlocks %}
-			
-		    {% if block.type == "fullImage" %}
-		    {% set asset = block.image.first() %}
-		    {% if asset %}
-		    <section class="row">
-		    	<div class="columns reveal left"> 
-		            <div class="box">
-		              <img src="{{asset.url}}" />
-		            </div>
-		        </div>
-		    </section>
-		    {% endif %}
+    <div class="row reveal">
+      <div class="columns left">
+        {% for image in block.images %}
+        <img class="large-6 medium-6 small-6 left" src="{{image.url}}" /> {% endfor %}
+      </div>
+    </div>
 
-		    {% elseif block.type == "twoUp" %}
-		    <section class="row">
-		    	{% for image in block.images %}
-				    <div class="large-6 medium-6 small-12 columns left reveal"> 
-				        <div class="box">
-				            <img src="{{image.url}}"/>
-				        	</div>
-			    	</div>
-		        {% endfor %}
-		    </section>
-		    {% elseif block.type == "threeUp" %}
-		    <section class="row">
-		    	{% for image in block.images %}
-				    <div class="large-4 medium-4 small-12 columns left reveal"> 
-				        <div class="box">
-				            <img src="{{image.url}}"/>
-				        	</div>
-			    	</div>
-		        {% endfor %}
-		    </section>
-		    {% elseif block.type == "fourUp" %}
-		    <section class="row">
-		    	{% for image in block.images %}
-				    <div class="large-3 medium-3 small-12 columns left reveal"> 
-				        <div class="box">
-				            <img src="{{image.url}}"/>
-				        	</div>
-			    	</div>
-		        {% endfor %}
-		    </section>
-		    {% elseif block.type == "twoUpClose" %}
-		    <section class="row">
-			    <div class="columns reveal left">
-		        	{% for image in block.images %}
-		        		<img class="large-6 medium-6 small-6 left" src="{{image.url}}"/>
-		        	{% endfor %}
-		    	</div>
-		    </section>
-		    {% elseif block.type == "fullBleed" %}
-		        {% for image in block.image %}
-				    <div class="spaced reveal" style="background-color: {{entry.backgroundColor}};">
-			        	<div class="box large-10 center">
-			        		<img src="{{image.url}}"/>
-			        	</div>
-				    </div>
-		        {% endfor %}
-		    {% elseif block.type == "text" %}
-		    <section class="row">
-		    	<div class="columns left reveal"> 
-		    		<div class="large-6 medium-9 small-10 center bump">
-		        		<div class="quote">
-		            		<h2>{{block.textTitle}}</h2>
-		            		<p class="light">{{block.textBody}}</p>
-		        		</div>
-		        	</div>
-				</div>
-			</section>
-		    {% elseif block.type == "gallerySingle" %}
-		    <section class="row">
-		    	<div class="columns left reveal bump"> 
-					 <div class="owl-carousel gallery1 images">
-						{% for asset in block.image %}
-							<div class="item">
-								<img src="{{ asset.url }}" alt="{{entry.title}}" />
-							</div>							  
-						{% endfor %}
-					</div>
-					<div class="columns">
-						<div class="slider-dots"></div>
-					</div>
-				</div>
-			</section>
-		    {% elseif block.type == "galleryMultiple" %}
-		    <section class="columns">
-		    	<div class="columns left reveal bump"> 
-					 <div class="owl-carousel gallery2 images">
-						{% for asset in block.image %}
-							<div class="item">
-								<img src="{{ asset.url }}" alt="{{entry.title}}" />
-							</div>							  
-						{% endfor %}
-						
-					</div>
-					<div class="columns">
-						<div class="slider-dots"></div>
-					</div>
-				</div>
-			</section>			
-			{% endif %}
-		{% endfor %}
+    {% elseif block.type == "fullBleed" %} {% for image in block.image %}
+    <div>
+      <figure class="left">
+        <img src="{{image.url}}" />
+      </figure>
+    </div>
+    {% endfor %} {% elseif block.type == "text" %}
 
-	<section class="row">
-		<article class="inquire columns small-padding">
-			<div class="left reveal">
-				<h2>Starting a project shouldn't have to be difficult.</h2>
-				<a href="mailto:hello@foundoslo.no?subject=Business Inquiry""><p class="left small caps visit blue">Inquire about a project</p></a>
-			</div>
-		</article>
-	</section>
+    <div class="row reveal">
+      <div class="columns left content__text">
+        <div class="large-6 medium-9 small-12 center">
+          <blockquote>{{block.textTitle}}</blockquote>
+          <p>{{block.textBody}}</p>
+        </div>
+      </div>
+    </div>
 
-	<section class="dark">
-		<div class="row small-padding">
+    {% elseif block.type == "quote" %}
 
-			<div class="columns small-padding">
-				<h2>Related projects</h2>
-			</div>
+    <div class="row reveal">
+      <div class="columns left content__text">
+        <div class="large-10 medium-10 small-12 center">
+          <h2>«{{block.quoteText}}»</h2>
+        </div>
+      </div>
+    </div>
 
-			{% set category = craft.categories.first() %}
+    {% elseif block.type == "gallerySingle" %}
 
-			{% if category %}
-				{% set entries = craft.entries.relatedTo(category).limit(3) %}
+    <div class="row reveal">
+      <div class="columns left">
+        <div class="owl-carousel gallery1 images">
+          {% for asset in block.image %}
+          <div class="item">
+            <img src="{{ asset.url }}" alt="{{entry.title}}" />
+          </div>
+          {% endfor %}
+        </div>
+        <div class="columns">
+          <div class="slider-dots"></div>
+        </div>
+      </div>
+    </div>
 
-				{% for entry in entries %}
-				<article class="large-4 medium-4 small-12 column left">
-					<div class="left">
-						<div class="box dark">
-							<a class="transition" href="{{entry.url}}">
+    {% elseif block.type == "galleryMultiple" %}
 
-							{% set menuThumb = entry.menuThumb.first() %}
-							{% if menuThumb %}
-							    <img class="center" src="{{menuThumb.url}}" />
-							{% endif %}
+    <div class="columns reveal">
+      <div class="columns left bump">
+        <div class="owl-carousel gallery2 images">
+          {% for asset in block.image %}
+          <div class="item">
+            <img src="{{ asset.url }}" alt="{{entry.title}}" />
+          </div>
+          {% endfor %}
+        </div>
+        <div class="columns">
+          <div class="slider-dots"></div>
+        </div>
+      </div>
+    </div>
+    {% endif %} {% endfor %}
+  </div>
 
+  <section class="row reveal">
+    <article class="large-6 medium-9 small-12 center">
+      <div class="padding">
+        <blockquote>Starting a project shouldn't have to be difficult.</blockquote>
+        <p>If you enjoyed this project and want to discuss a project of your own, you can <a class="link--underlined" href="mailto:hello@foundoslo.no?subject=BusinessInquiry">send an email</a>          and we can work together.</p>
+      </div>
+    </article>
+  </section>
+
+  <section class="related">
+    <div class="row padding">
+      <div class="columns bump">
+        <blockquote>Related projects</blockquote>
+      </div>
+
+      {% set category = craft.categories.first() %} {% if category %}
+      {% set entries = craft.entries.relatedTo(category).limit(3) %}
+      {% for entry in entries %}
+      <article class="large-12 medium-12 small-12 column left">
+        <div class="left">
+          <figure class="box dark">
+            <a class="transition" href="{{entry.url}}">
+								{% set projectThumb = entry.menuThumb.first() %}
+			          {% if projectThumb %}
+							    <img class="center" src="{{projectThumb.url}}" />
+								{% endif %}
 							</a>
-
-						</div>
-						<a class="transition" href="{{entry.url}}">
-							<p class="comment">{{entry.title}}</p>
-						</a>
-					</div>
-				</article>
-				{% endfor %}
-			{% endif %}
-		</div>
-	</section>
+          </figure>
+          <p><a class="transition" href="{{entry.url}}">{{entry.title}}</a></p>
+        </div>
+      </article>
+      {% endfor %} {% endif %}
+    </div>
+  </section>
 </main>
 {% endblock %}
